@@ -17,10 +17,22 @@
 import webapp2
 
 class MainHandler(webapp2.RequestHandler):
-    def get(self):
+    def dispatch(self):
     	self.response.headers['Cache-Control'] = 'no-store'
     	self.response.headers['Content-Type'] = 'text/plain'
         self.response.write(self.request)
+
+    def get(self):
+    	self.dispatch()
+
+	def post(self):
+		self.dispatch()
+
+	def put(self):
+		self.dispatch()
+
+	def delete(self):
+		self.dispatch()
 
 app = webapp2.WSGIApplication([
     (r'/', MainHandler),
